@@ -1,18 +1,26 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import {
+  Asset,
+  AssetHistory,
+  Assets,
+  GetAssetHistoryParams,
+  GetAssetsParams,
+} from "./types";
+
 export const coinCapApi = createApi({
   reducerPath: "coinCapApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coincap.io/v2/" }),
   endpoints: (builder) => ({
-    getAssets: builder.query({
+    getAssets: builder.query<Assets, GetAssetsParams>({
       query: ({ limit, offset, search }) => {
         const params = new URLSearchParams();
 
         if (limit) {
-          params.append("limit", limit);
+          params.append("limit", limit.toString());
         }
         if (offset) {
-          params.append("offset", offset);
+          params.append("offset", offset.toString());
         }
         if (search) {
           params.append("search", search);
@@ -25,11 +33,11 @@ export const coinCapApi = createApi({
       },
     }),
 
-    getAssetById: builder.query({
+    getAssetById: builder.query<Asset, string>({
       query: (id) => `assets/${id}`,
     }),
 
-    getAssetHistory: builder.query({
+    getAssetHistory: builder.query<AssetHistory, GetAssetHistoryParams>({
       query: ({ id, interval, start, end }) => {
         const params = new URLSearchParams();
 
@@ -37,10 +45,10 @@ export const coinCapApi = createApi({
           params.append("interval", interval);
         }
         if (start) {
-          params.append("start", start);
+          params.append("start", start.toString());
         }
         if (end) {
-          params.append("end", end);
+          params.append("end", end.toString());
         }
 
         return {
