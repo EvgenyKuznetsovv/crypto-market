@@ -1,0 +1,30 @@
+.emptyField {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 32px;
+  padding: 120px 0;
+}
+
+.table {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #202020;
+  background-color:  #DED4E1;
+
+  thead {
+    background-color: #c6bed6
+  }
+
+  th {
+    font-weight: 400;
+    padding: 20px 15px;
+    text-align: center;
+  }
+
+  td {
+    text-align: center;
+  }
+}

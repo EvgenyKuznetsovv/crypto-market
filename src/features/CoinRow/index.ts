@@ -1,0 +1,1 @@
+export { CoinTableRow } from "./ui";

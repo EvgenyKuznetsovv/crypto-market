@@ -1,0 +1,19 @@
+.symbolContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.priceChange {
+  width: 15%;
+}
+
+.priceIncrease {
+  color: green;
+}
+
+.priceDrop {
+  color: red;
+}
