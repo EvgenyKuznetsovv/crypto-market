@@ -13,6 +13,7 @@ const theme = createTheme({
       defaultProps: { variant: "filled", radius: "md" },
       classNames: {
         header: s.modalHeader,
+        close: s.closeBtn,
       },
     }),
     ActionIcon: ActionIcon.extend({

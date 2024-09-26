@@ -1,9 +1,19 @@
 .modalHeader {
-  background: none;
+  background: #ded4e1;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   h2 {
     font-size: 25px;
     font-weight: bold;
     line-height: 1.2;
+  }
+
+  .closeBtn {
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
   }
 }

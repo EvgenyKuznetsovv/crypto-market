@@ -4,24 +4,8 @@
     height: auto;
   }
 
-  .modalContent {
-    .header {
-      background: #ded4e1;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .closeBtn {
-        width: 40px;
-        height: 40px;
-        background-color: transparent;
-      }
-    }
-  }
-
   .body {
     overflow-y: auto;
-    height: calc(100% - 40px);
+    height: calc(100% - 90px);
   }
 }
