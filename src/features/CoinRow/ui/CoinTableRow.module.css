@@ -2,12 +2,16 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: start;
+  gap: 25px;
+}
+
+.symbolRow {
+  width: 15%;
 }
 
 .priceChange {
-  width: 15%;
+  width: 20%;
 }
 
 .priceIncrease {

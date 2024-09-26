@@ -1,1 +1,1 @@
-export { roundNumber } from "./roundNumber";
+export { formatPrice } from "./formatPrice";

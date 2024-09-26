@@ -1,48 +1,76 @@
+import { useState } from "react";
+
 import { Table } from "@mantine/core";
 
-import { CoinTableRow } from "../../../features";
+import { CoinTableRow, Sortable } from "../../../features";
+import { SortType } from "../../../features/Sortable/types";
 import { useGetAssetsQuery } from "../../../shared/api";
-import { roundNumber } from "../../../shared/lib";
+import { AssetData } from "../../../shared/api/types";
+import { formatPrice } from "../../../shared/lib";
 
 import { coinsTableTitles } from "./constants";
-
-// import { roundNumber } from "";
 
 export const useCoinsTableData = () => {
   const {
     data: { data: assets = [] } = {},
-    error: assetsError,
+    error,
     isLoading,
   } = useGetAssetsQuery({}, { pollingInterval: 10000 });
 
-  console.log(assets[0]?.symbol, assets[0]?.priceUsd);
+  const [sort, setSort] = useState<SortType<keyof AssetData>>({
+    type: null,
+    order: null,
+  });
+
+  // console.log(assets[0]?.symbol, assets[0]?.priceUsd);
+  console.log(sort);
 
   const tableData = (assets ?? []).map(
     ({ id, changePercent24Hr, marketCapUsd, priceUsd, symbol }) => {
-      const roundedPriceUsd = roundNumber(priceUsd);
-      const roundedChangePercent24Hr = roundNumber(changePercent24Hr);
-      const roundedMarketCapUsd = roundNumber(marketCapUsd);
+      const isPriceDropped = +changePercent24Hr < 0;
+      const formatChange24Hr = formatPrice(changePercent24Hr);
+      const formatMarketCap = formatPrice(marketCapUsd);
+      const formatPriceUsd = formatPrice(priceUsd);
+
+      if (formatMarketCap === "0" || formatPriceUsd === "0") {
+        return <tr key={id}></tr>;
+      }
 
       return (
         <CoinTableRow
           key={id}
-          changePercent24Hr={roundedChangePercent24Hr}
+          changePercent24Hr={formatChange24Hr}
           id={id}
-          marketCapUsd={roundedMarketCapUsd}
-          priceUsd={roundedPriceUsd}
+          isPriceDropped={isPriceDropped}
+          marketCapUsd={formatMarketCap}
+          priceUsd={formatPriceUsd}
           symbol={symbol}
         />
       );
     }
   );
 
-  const titles = coinsTableTitles.map(({ title }) => {
+  const titles = coinsTableTitles.map(({ title, isSortable, property = null }) => {
     const tableTitles = <Table.Th key={title}>{title}</Table.Th>;
 
     return {
-      title: tableTitles,
+      title: isSortable ? (
+        <Table.Th key={title}>
+          <Sortable<keyof AssetData>
+            iconType={
+              property === sort.type ? (sort.order === "asc" ? "asc" : "desc") : "none"
+            }
+            setSort={setSort}
+            sort={sort}
+            type={property}>
+            {title}
+          </Sortable>
+        </Table.Th>
+      ) : (
+        tableTitles
+      ),
     };
   });
 
-  return { tableData, titles, isLoading };
+  return { tableData, titles, isLoading, error };
 };

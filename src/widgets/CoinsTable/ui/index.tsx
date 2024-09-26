@@ -1,4 +1,5 @@
 // import { CustomTable } from "@/shared/ui/CustomTable";
+
 import { CustomTable } from "../../../shared/ui";
 import { useCoinsTableData } from "../lib/useCoinsTableData";
 
@@ -24,6 +25,8 @@ export const CoinsTable = () => {
         tableData={tableData}
         stickyHeader
       />
+
+      {/* <Pagination total={10}/> */}
     </>
   );
 };

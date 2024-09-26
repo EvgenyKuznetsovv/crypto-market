@@ -12,10 +12,10 @@
   font-weight: 400;
   line-height: 1.2;
   color: #202020;
-  background-color:  #DED4E1;
+  background-color: #ded4e1;
 
   thead {
-    background-color: #c6bed6
+    background-color: #c6bed6;
   }
 
   th {
@@ -26,5 +26,6 @@
 
   td {
     text-align: center;
+    padding: 10px 15px;
   }
 }

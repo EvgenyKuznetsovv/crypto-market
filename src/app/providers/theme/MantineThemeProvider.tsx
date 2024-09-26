@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { createTheme, MantineProvider, Modal } from "@mantine/core";
+import { ActionIcon, createTheme, MantineProvider, Modal } from "@mantine/core";
 
 import { IProviders } from "../types";
 
@@ -13,6 +13,12 @@ const theme = createTheme({
       defaultProps: { variant: "filled", radius: "md" },
       classNames: {
         header: s.modalHeader,
+      },
+    }),
+    ActionIcon: ActionIcon.extend({
+      defaultProps: {
+        color: "#3e7e96",
+        variant: "light",
       },
     }),
   },
