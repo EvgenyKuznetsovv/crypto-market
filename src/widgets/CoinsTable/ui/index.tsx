@@ -1,17 +1,25 @@
 // import { Loader } from "@mantine/core";
 
-import { CustomTable, Loader } from "../../../shared/ui";
+import { useState } from "react";
+
+import { CustomTable, Loader, SearchInput } from "../../../shared/ui";
 import { useCoinsTableData } from "../lib/useCoinsTableData";
 
 import s from "./CoinsTable.module.css";
 
 export const CoinsTable = () => {
   // const [opened, { open, close }] = useDisclosure(false);
-  const { isLoading, tableData, titles } = useCoinsTableData();
+  const [searchCoinName, setSearchCoinName] = useState("");
+  const { isLoading, tableData, titles } = useCoinsTableData({ searchCoinName, });
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchCoinName(e.target.value);
+  };
 
   // const content = Array(100)
   //   .fill(0)
   //   .map((_, index) => <p key={index}>Modal with scroll</p>);
+  // console.log(searchCoinName);
 
   return (
     <>
@@ -23,13 +31,23 @@ export const CoinsTable = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <CustomTable
-          className={s.table}
-          headerTitles={titles}
-          isLoading={isLoading}
-          tableData={tableData}
-          stickyHeader
-        />
+        <>
+          <div className={s.searchWrap}>
+            <SearchInput
+              onChange={handleSearchChange}
+              placeholder={"Поиск по названию монеты"}
+              value={searchCoinName}
+            />
+          </div>
+
+          <CustomTable
+            className={s.table}
+            headerTitles={titles}
+            isLoading={isLoading}
+            tableData={tableData}
+            stickyHeader
+          />
+        </>
       )}
       {/* <Pagination total={10}/> */}
     </>
