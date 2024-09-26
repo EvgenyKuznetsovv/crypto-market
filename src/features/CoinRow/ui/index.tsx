@@ -2,7 +2,7 @@ import { Table } from "@mantine/core";
 import clsx from "clsx";
 
 import { getCoinLogoUrl } from "../../../shared/lib";
-import { CustomButton } from "../../../shared/ui/CustomButton";
+import { CustomButton } from "../../../shared/ui";
 
 import s from "./CoinTableRow.module.css";
 import { CoinTableRowProps } from "./types";
