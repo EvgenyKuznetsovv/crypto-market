@@ -6,7 +6,7 @@ import { CoinTableRow, Sortable } from "../../../features";
 import { SortType } from "../../../features/Sortable/types";
 import { useGetAssetsQuery } from "../../../shared/api";
 import { AssetData } from "../../../shared/api/types";
-import { formatPrice } from "../../../shared/lib";
+import { formatPrice, sortDataArray } from "../../../shared/lib";
 
 import { coinsTableTitles } from "./constants";
 
@@ -17,15 +17,14 @@ export const useCoinsTableData = () => {
     isLoading,
   } = useGetAssetsQuery({}, { pollingInterval: 10000 });
 
-  const [sort, setSort] = useState<SortType<keyof AssetData>>({
+  const [sort, setSort] = useState<SortType<AssetData>>({
     type: null,
     order: null,
   });
 
-  // console.log(assets[0]?.symbol, assets[0]?.priceUsd);
-  console.log(sort);
+  const sortedAssets = sortDataArray<AssetData>(assets, sort);
 
-  const tableData = (assets ?? []).map(
+  const tableData = (sortedAssets ?? []).map(
     ({ id, changePercent24Hr, marketCapUsd, priceUsd, symbol }) => {
       const isPriceDropped = +changePercent24Hr < 0;
       const formatChange24Hr = formatPrice(changePercent24Hr);
@@ -56,7 +55,7 @@ export const useCoinsTableData = () => {
     return {
       title: isSortable ? (
         <Table.Th key={title}>
-          <Sortable<keyof AssetData>
+          <Sortable<AssetData>
             iconType={
               property === sort.type ? (sort.order === "asc" ? "asc" : "desc") : "none"
             }

@@ -1,7 +1,7 @@
 import { Table } from "@mantine/core";
 import clsx from "clsx";
 
-import { getCoinLogoUrl } from "../../../shared/lib/getCoinLogoUrl";
+import { getCoinLogoUrl } from "../../../shared/lib";
 import { CustomButton } from "../../../shared/ui/CustomButton";
 
 import s from "./CoinTableRow.module.css";
