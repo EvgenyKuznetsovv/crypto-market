@@ -17,3 +17,17 @@
     background-color: transparent;
   }
 }
+
+.paginationRoot {
+  button {
+    background-color: #bdb2d2;
+  }
+
+  button:where([data-active]) {
+    background-color: #3e7e96;
+  }
+
+  button:not([data-active]):hover {
+    background-color: #ada0c6;
+  }
+}

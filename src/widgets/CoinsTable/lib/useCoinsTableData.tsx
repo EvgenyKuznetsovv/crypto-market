@@ -10,12 +10,19 @@ import { formatPrice, sortDataArray } from "../../../shared/lib";
 
 import { coinsTableTitles } from "./constants";
 
-export const useCoinsTableData = ({ searchCoinName }: { searchCoinName: string }) => {
+export const useCoinsTableData = ({
+  searchCoinName,
+  activePage,
+}: {
+  searchCoinName: string;
+  activePage: number;
+}) => {
+  const offset = (activePage - 1) * 100;
   const {
     data: { data: assets = [] } = {},
     error,
     isLoading,
-  } = useGetAssetsQuery({ search: searchCoinName }, { pollingInterval: 10000 });
+  } = useGetAssetsQuery({ search: searchCoinName, offset }, { pollingInterval: 10000 });
 
   const [sort, setSort] = useState<SortType<AssetData>>({
     type: null,

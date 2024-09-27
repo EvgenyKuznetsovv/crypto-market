@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { Pagination } from "@mantine/core";
+
 import { CustomTable, Loader, SearchInput } from "../../../shared/ui";
 import { useCoinsTableData } from "../lib/useCoinsTableData";
 
@@ -10,12 +12,28 @@ import s from "./CoinsTable.module.css";
 export const CoinsTable = () => {
   // const [opened, { open, close }] = useDisclosure(false);
   const [searchCoinName, setSearchCoinName] = useState("");
-  const { isLoading, tableData, titles } = useCoinsTableData({ searchCoinName, });
+  const [activePage, setPage] = useState(1);
+  const { isLoading, tableData, titles } = useCoinsTableData({
+    searchCoinName,
+    activePage,
+  });
+
+  // console.log(activePage);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchCoinName(e.target.value);
   };
 
+  const handlePageChange = (page: number) => {
+    setPage(page);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const isPaginationVisible = !(tableData.length < 100);
   // const content = Array(100)
   //   .fill(0)
   //   .map((_, index) => <p key={index}>Modal with scroll</p>);
@@ -32,13 +50,11 @@ export const CoinsTable = () => {
         <Loader />
       ) : (
         <>
-          <div className={s.searchWrap}>
-            <SearchInput
-              onChange={handleSearchChange}
-              placeholder={"Поиск по названию монеты"}
-              value={searchCoinName}
-            />
-          </div>
+          <SearchInput
+            onChange={handleSearchChange}
+            placeholder={"Поиск по названию монеты"}
+            value={searchCoinName}
+          />
 
           <CustomTable
             className={s.table}
@@ -47,9 +63,18 @@ export const CoinsTable = () => {
             tableData={tableData}
             stickyHeader
           />
+          {isPaginationVisible && (
+            <div className={s.paginationWrap}>
+              <Pagination
+                onChange={handlePageChange}
+                total={7}
+                value={activePage}
+                withControls={false}
+              />
+            </div>
+          )}
         </>
       )}
-      {/* <Pagination total={10}/> */}
     </>
   );
 };

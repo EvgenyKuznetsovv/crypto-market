@@ -10,12 +10,14 @@ export const SearchInput = ({
   ...restProps
 }: SearchInputProps) => {
   return (
-    <input
-      className={clsx(s.searchInput, className)}
-      onChange={onChange}
-      type={"search"}
-      value={value}
-      {...restProps}
-    />
+    <div className={s.searchWrap}>
+      <input
+        className={clsx(s.searchInput, className)}
+        onChange={onChange}
+        type={"search"}
+        value={value}
+        {...restProps}
+      />
+    </div>
   );
 };

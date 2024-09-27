@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ActionIcon, createTheme, MantineProvider, Modal } from "@mantine/core";
+import { ActionIcon, createTheme, MantineProvider, Modal, Pagination } from "@mantine/core";
 
 import { IProviders } from "../types";
 
@@ -22,6 +22,17 @@ const theme = createTheme({
         variant: "light",
       },
     }),
+    Pagination: Pagination.extend({
+      defaultProps: {
+        color: "#3e7e96",
+        size: "lg",
+        radius: "md",
+        autoContrast: true,
+      },
+      classNames: {
+        root: s.paginationRoot,
+      }
+    })
   },
 });
 
