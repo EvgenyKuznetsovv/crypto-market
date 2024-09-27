@@ -1,5 +1,6 @@
 import { Table } from "@mantine/core";
 import clsx from "clsx";
+import { NavLink } from "react-router-dom";
 
 import { getCoinLogoUrl } from "../../../shared/lib";
 import { CustomButton } from "../../../shared/ui";
@@ -18,19 +19,21 @@ export const CoinTableRow = ({
   return (
     <Table.Tr id={id}>
       <Table.Td className={s.symbolRow}>
-        <div className={s.symbolContainer}>
-          <img
-            alt={`${symbol} Icon`}
-            height={"40px"}
-            onError={(e) => {
-              e.currentTarget.src = getCoinLogoUrl("btc");
-            }}
-            src={getCoinLogoUrl(symbol)}
-            width={"40px"}
-          />
+        <NavLink to={`/coin-details/${id}`}>
+          <div className={s.symbolContainer}>
+            <img
+              alt={`${symbol} Icon`}
+              height={"40px"}
+              onError={(e) => {
+                e.currentTarget.src = getCoinLogoUrl("btc");
+              }}
+              src={getCoinLogoUrl(symbol)}
+              width={"40px"}
+            />
 
-          <p>{symbol}</p>
-        </div>
+            <p>{symbol}</p>
+          </div>
+        </NavLink>
       </Table.Td>
       <Table.Td>{`${priceUsd} $`}</Table.Td>
       <Table.Td

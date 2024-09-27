@@ -1,0 +1,14 @@
+.headerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  font-size: 30px;
+  margin-top: 25px;
+  font-weight: bold;
+}
+
+.symbol {
+  color: #3a444b;
+}

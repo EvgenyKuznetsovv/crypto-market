@@ -1,0 +1,1 @@
+export { CoinDetailsInfo } from "./ui";

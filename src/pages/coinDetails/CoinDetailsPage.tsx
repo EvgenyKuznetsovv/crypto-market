@@ -1,5 +1,11 @@
+import { useParams } from "react-router-dom";
+
+import { CoinDetails } from "../../widgets";
+
 const CoinDetailsPage = () => {
-  return <h1 className={"text-2xl"}>Coin information</h1>;
+  const { id } = useParams();
+
+  return <CoinDetails id={id ?? ""} />;
 };
 
 export default CoinDetailsPage;

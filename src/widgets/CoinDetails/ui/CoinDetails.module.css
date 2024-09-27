@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+  flex-wrap: wrap-reverse;
+}
+
+.coinDetailsInfo {
+  flex: 0 0 28%;
+  margin-left: 30px;
+}
+
+.linerChart {
+  flex: 0 0 67%;
+  margin-right: 30px;
+  min-width: 500px;
+}
+
+.loader {
+  position: fixed;
+  width: 100%;
+}
+
+.backdrop {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 100;
+}

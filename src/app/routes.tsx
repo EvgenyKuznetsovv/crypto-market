@@ -11,7 +11,7 @@ const AppRouter = () => {
   const routes = createRoutesFromElements(
     <>
       <Route element={<HomePage />} path={"/"} />
-      <Route element={<CoinDetailsPage />} path={"/coin-details"} />
+      <Route element={<CoinDetailsPage />} path={"/coin-details/:id"} />
       <Route element={<h1>Are you lost?</h1>} path={"*"} />
     </>
   );

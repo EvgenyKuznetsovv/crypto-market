@@ -15,7 +15,7 @@ export interface AssetData {
 
 export interface AssetHistoryData {
   priceUsd: string;
-  time: number;
+  date: string;
 }
 
 export interface Assets {
@@ -39,9 +39,11 @@ export interface GetAssetsParams {
   search?: string;
 }
 
+export type IntervalType = "h1" | "h12" | "d1";
+
 export interface GetAssetHistoryParams {
   id: string;
-  interval: "d1" | "h12" | "h1";
+  interval: IntervalType;
   start?: number;
   end?: number;
 }

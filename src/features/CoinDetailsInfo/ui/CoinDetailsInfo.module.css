@@ -1,0 +1,46 @@
+.container {
+  border: 1px solid #6b7eeb;
+  border-radius: 15px;
+  color: #ccc;
+  width: 80%;
+  padding: 30px;
+  background-color: #0c032b;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 7px;
+
+  .selectCoin {
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 0px 10px;
+    background-color: #ccc;
+    color: #000;
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.buttonContainer {
+  margin-top: 25px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #000;
+
+  button {
+    background-color: #ccc;
+    width: 90px;
+  }
+}

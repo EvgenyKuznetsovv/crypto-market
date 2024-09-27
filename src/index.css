@@ -8,7 +8,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
   background-color: #ded4e1;
 
@@ -21,10 +21,10 @@
 body {
   margin: 0;
   /* min-width: 320px; */
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: #ded4e1;
 }
 
-#root {
+/* #root {
   height: 100vh;
-}
+} */

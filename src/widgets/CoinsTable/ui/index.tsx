@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Pagination } from "@mantine/core";
 
 import { CustomTable, Loader, SearchInput } from "../../../shared/ui";
-import { useCoinsTableData } from "../lib/useCoinsTableData";
+import { coinsTableClickHandler, useCoinsTableData } from "../lib";
 
 import s from "./CoinsTable.module.css";
 
@@ -17,8 +17,6 @@ export const CoinsTable = () => {
     searchCoinName,
     activePage,
   });
-
-  // console.log(activePage);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchCoinName(e.target.value);
@@ -60,6 +58,7 @@ export const CoinsTable = () => {
             className={s.table}
             headerTitles={titles}
             isLoading={isLoading}
+            onClick={coinsTableClickHandler}
             tableData={tableData}
             stickyHeader
           />
