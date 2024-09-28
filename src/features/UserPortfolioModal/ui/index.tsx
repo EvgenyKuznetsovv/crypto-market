@@ -36,8 +36,16 @@ export const UserPortfolioModal = ({
       opened={opened}
       scrollAreaComponent={ScrollAreaAutosize}
       size={"400px"}
-      title={"Portfolio"}>
+      title={"Stock portfolio"}>
       <div className={s.wrap}>
+        {portfolio.length === 0 && (
+          <h1
+            className={
+              "text-1xl font-bold text-center flex justify-center items-center h-[50px]"
+            }>
+            Your stock portfolio is empty
+          </h1>
+        )}
         {portfolio.map(([id, coins]) => {
           const { coinData, totalPriceByCoin } = calcTotalCoinPrice(coins, apiData, id);
 

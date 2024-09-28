@@ -25,7 +25,7 @@ export const CoinDetails = ({ id }: { id: string }) => {
     data: { data: asset } = {},
     error: assetError,
     isLoading: assetLoading,
-  } = useGetAssetByIdQuery(id);
+  } = useGetAssetByIdQuery(id, { pollingInterval: 10000 });
 
   if (historyError || assetError) {
     return (

@@ -13,14 +13,19 @@ export const usePortfolioValues = () => {
 
   const { data: { data: portfolioAssests = [] } = {}, isLoading } = useGetAssetsQuery(
     { ids: portfolioAssestsIds },
-    { pollingInterval: 5000 }
+    { pollingInterval: 3000 }
   );
 
   const currentTotalPrice = calcCurrentTotalPrice(portfolio, portfolioAssests);
   const totalPortfolioPrice = calcTotalPortfolioPrice(portfolio);
 
   const difference = currentTotalPrice - totalPortfolioPrice;
-  const percentageChange = ((difference / totalPortfolioPrice) * 100).toFixed(2);
+
+  let percentageChange = "0";
+
+  if (totalPortfolioPrice) {
+    percentageChange = ((difference / totalPortfolioPrice) * 100).toFixed(2);
+  } 
 
   const formattedCurrentTotalPrice = formatPrice(currentTotalPrice.toString());
   const formattedDifference = formatPrice(difference.toString());
