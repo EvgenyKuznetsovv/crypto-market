@@ -13,7 +13,7 @@ export const coinCapApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coincap.io/v2/" }),
   endpoints: (builder) => ({
     getAssets: builder.query<Assets, GetAssetsParams>({
-      query: ({ limit, offset, search }) => {
+      query: ({ limit, offset, search, ids }) => {
         const params = new URLSearchParams();
 
         if (limit) {
@@ -24,6 +24,9 @@ export const coinCapApi = createApi({
         }
         if (search) {
           params.append("search", search);
+        }
+        if (ids) {
+          params.append("ids", ids);
         }
 
         return {

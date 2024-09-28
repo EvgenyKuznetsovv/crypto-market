@@ -37,6 +37,7 @@ export interface GetAssetsParams {
   limit?: number;
   offset?: number;
   search?: string;
+  ids?: string;
 }
 
 export type IntervalType = "h1" | "h12" | "d1";

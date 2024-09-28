@@ -12,7 +12,12 @@ const AppRouter = () => {
     <>
       <Route element={<HomePage />} path={"/"} />
       <Route element={<CoinDetailsPage />} path={"/coin-details/:id"} />
-      <Route element={<h1>Are you lost?</h1>} path={"*"} />
+      <Route element={<h1
+        className={
+          "text-red-500 text-6xl text-center h-screen flex items-center justify-center"
+        }>
+        Are you lost?
+      </h1>} path={"*"} />
     </>
   );
 

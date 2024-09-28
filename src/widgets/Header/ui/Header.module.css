@@ -1,0 +1,38 @@
+.header {
+  height: 80px;
+  background-color: #0c032b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 30px;
+  color: #ccc;
+  font-size: 18px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.stockPortfolio{
+    height: 50px;
+    color: #000;
+    border-radius: 10px;
+    padding: 12px;
+    background-color: #ccc;
+}

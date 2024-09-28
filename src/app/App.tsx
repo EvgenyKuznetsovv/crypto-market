@@ -1,10 +1,15 @@
+import { Header } from "../widgets";
+
 import { Providers } from "./providers";
 import AppRouter from "./routes";
 
 const App = () => {
   return (
     <Providers>
-      <AppRouter />
+      <>
+        <Header />
+        <AppRouter />
+      </>
     </Providers>
   );
 };
