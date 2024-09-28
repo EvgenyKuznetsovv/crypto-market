@@ -31,8 +31,19 @@
 
 .stockPortfolio{
     height: 50px;
+    text-wrap: nowrap;
     color: #000;
     border-radius: 10px;
     padding: 12px;
     background-color: #ccc;
+}
+
+.green {
+  color: green;
+  margin-left: 5px;
+}
+
+.red {
+  color: red;
+  margin-left: 5px; 
 }

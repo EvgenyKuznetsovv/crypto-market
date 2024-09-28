@@ -1,8 +1,10 @@
+import { useDisclosure } from "@mantine/hooks";
 import { NavLink } from "react-router-dom";
 
 import { AssetData, IntervalType } from "../../../shared/api/types";
 import { formatPrice } from "../../../shared/lib";
 import { CustomButton } from "../../../shared/ui";
+import { CoinShopModal } from "../../CoinShopModal";
 import { intervals } from "../lib/constants";
 
 import s from "./CoinDetailsInfo.module.css";
@@ -14,6 +16,8 @@ export const CoinDetailsInfo = ({
   asset: AssetData | undefined;
   setInteval: React.Dispatch<React.SetStateAction<IntervalType>>;
 }) => {
+  const [opened, { open, close }] = useDisclosure(false);
+
   function selectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     const interval = event.target.value as IntervalType;
 
@@ -29,11 +33,11 @@ export const CoinDetailsInfo = ({
         <strong>Supply:</strong> <span>{formatPrice(asset?.supply ?? "0")}</span>
       </div>
       <div className={s.detailsRow}>
-        <strong>Price:</strong> <span>{formatPrice(asset?.priceUsd ?? "0")} $</span>
+        <strong>Price:</strong> <span>{formatPrice(asset?.priceUsd ?? "0")}$</span>
       </div>
       <div className={s.detailsRow}>
         <strong>Market cap:</strong>{" "}
-        <span>{formatPrice(asset?.marketCapUsd ?? "0")} $</span>
+        <span>{formatPrice(asset?.marketCapUsd ?? "0")}$</span>
       </div>
       {asset?.maxSupply && (
         <div className={s.detailsRow}>
@@ -53,8 +57,10 @@ export const CoinDetailsInfo = ({
         <NavLink to={"/"}>
           <CustomButton label={"Home"} />
         </NavLink>
-        <CustomButton label={"Add"} />
+        <CustomButton label={"Add"} onClick={open} />
       </div>
+
+      <CoinShopModal coinId={asset?.id ?? ""} onClose={close} opened={opened} />
     </div>
   );
 };

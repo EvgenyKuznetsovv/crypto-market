@@ -1,0 +1,1 @@
+export { useCoinShopHandles } from "./useCoinShopHandles";

@@ -1,19 +1,30 @@
+import { useDisclosure } from "@mantine/hooks";
+import clsx from "clsx";
+
+import { UserPortfolioModal } from "../../../features";
 import { useGetAssetsQuery } from "../../../shared/api";
 import { formatPrice } from "../../../shared/lib";
-import { coinsIds } from "../lib/constants";
+import { coinsIds, usePortfolioValues } from "../lib";
 
 import s from "./Header.module.css";
 
 export const Header = () => {
   const ids = coinsIds.join();
+  const [opened, { open, close }] = useDisclosure(false);
+
+  const { data: { data: assets = [] } = {} } = useGetAssetsQuery(
+    { ids },
+    { pollingInterval: 10000 }
+  );
 
   const {
-    data: { data: assets = [] } = {},
-    error: assetsError,
-    isLoading: assetsLoading,
-  } = useGetAssetsQuery({ ids }, { pollingInterval: 10000 });
-
-  console.log(assets);
+    formattedCurrentTotalPrice,
+    formattedDifference,
+    percentageChange,
+    sign,
+    isLoading,
+    portfolioAssests,
+  } = usePortfolioValues();
 
   return (
     <div className={s.header}>
@@ -30,8 +41,19 @@ export const Header = () => {
           </div>
         ))}
       </div>
-
-      <div className={s.stockPortfolio}>134,32 USD +2,38 (1,80 %).</div>
+      {!isLoading && (
+        <button onClick={open}>
+          <div className={s.stockPortfolio}>
+            <p>
+              {formattedCurrentTotalPrice}$
+              <span className={clsx(sign === "+" ? s.green : s.red)}>
+                {` ${sign}${formattedDifference}$ ( ${sign}${percentageChange}% )`}
+              </span>
+            </p>
+          </div>
+        </button>
+      )}
+      <UserPortfolioModal apiData={portfolioAssests} onClose={close} opened={opened} />
     </div>
   );
 };

@@ -1,0 +1,22 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  font-size: 18px;
+  gap: 10px;
+
+  .row {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    align-items: center;
+  }
+
+  .button {
+    justify-self: end;
+  }
+
+  .coin {
+    justify-self: start;
+  }
+}
