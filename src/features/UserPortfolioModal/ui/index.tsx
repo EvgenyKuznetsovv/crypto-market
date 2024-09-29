@@ -37,7 +37,7 @@ export const UserPortfolioModal = ({
       scrollAreaComponent={ScrollAreaAutosize}
       size={"400px"}
       title={"Stock portfolio"}>
-      <div className={s.wrap}>
+      <div className={s.wrap} id={"userPorfolioModal"}>
         {portfolio.length === 0 && (
           <h1
             className={
@@ -57,7 +57,7 @@ export const UserPortfolioModal = ({
               </div>
 
               <div key={`${id} but`} className={s.button}>
-                <ActionIcon onClick={() => removeCoinFromStorage(id)}>
+                <ActionIcon name={"deleteIcon"} onClick={() => removeCoinFromStorage(id)}>
                   <DeleteIcon />
                 </ActionIcon>
               </div>

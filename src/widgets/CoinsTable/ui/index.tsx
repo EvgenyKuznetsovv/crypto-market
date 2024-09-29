@@ -60,6 +60,7 @@ export const CoinsTable = () => {
           {isPaginationVisible && (
             <div className={s.paginationWrap}>
               <Pagination
+                id={"pagination"}
                 onChange={handlePageChange}
                 total={7}
                 value={activePage}

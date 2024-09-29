@@ -29,7 +29,7 @@ export const Header = () => {
   return (
     <div className={s.header}>
       <div className={s.logoWrap}>
-        <img alt={"Loading..."} className={s.logo} src={"/bitcoin256.png"}></img>
+        <img alt={"market-coin"} className={s.logo} src={"/bitcoin256.png"}></img>
         <strong>CRYPTO MARKET</strong>
       </div>
 
@@ -42,7 +42,7 @@ export const Header = () => {
         ))}
       </div>
       {!isLoading && (
-        <button onClick={open}>
+        <button id={"stockPortfolio"} onClick={open}>
           <div className={s.stockPortfolio}>
             <p>
               {formattedCurrentTotalPrice}$

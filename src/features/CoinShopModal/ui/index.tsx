@@ -21,6 +21,11 @@ export const CoinShopModal = ({ coinId, onClose, opened }: CoinShopModalProps) =
   });
 
   const totalSum = +amount * +(asset?.priceUsd as string);
+  let title = "Loading";
+
+  if (!(isLoading || isFetching) && asset?.name) {
+    title = asset.name;
+  }
 
   return (
     <CustomModal
@@ -28,9 +33,13 @@ export const CoinShopModal = ({ coinId, onClose, opened }: CoinShopModalProps) =
       opened={opened}
       scrollAreaComponent={ScrollAreaAutosize}
       size={"350px"}
-      title={isLoading || isFetching ? "Loading..." : asset?.name}>
-      <form className={s.container} onSubmit={handleSubmit}>
-        {error && <p className={s.error}>{error}</p>}
+      title={title}>
+      <form className={s.container} id={"coinShopForm"} onSubmit={handleSubmit}>
+        {error && (
+          <p className={s.error} id={"coinShopFormError"}>
+            {error}
+          </p>
+        )}
         <div>
           <input
             className={s.numberInput}

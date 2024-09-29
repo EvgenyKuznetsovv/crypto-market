@@ -5,7 +5,13 @@ import { SortableProps } from "../types";
 
 import s from "./Sortable.module.css";
 
-export const Sortable = <T,>({ type, setSort, sort, iconType, children }: SortableProps<T>) => {
+export const Sortable = <T,>({
+  type,
+  setSort,
+  sort,
+  iconType,
+  children,
+}: SortableProps<T>) => {
   const handleClick = () => {
     if (sort.type !== type) {
       return setSort({ type, order: "desc" });
@@ -20,7 +26,9 @@ export const Sortable = <T,>({ type, setSort, sort, iconType, children }: Sortab
   return (
     <div className={s.wrapper}>
       {children}
-      <ActionIcon onClick={handleClick}>{getIcon(iconType)}</ActionIcon>
+      <ActionIcon name={type?.toString()} onClick={handleClick}>
+        {getIcon(iconType)}
+      </ActionIcon>
     </div>
   );
 };
