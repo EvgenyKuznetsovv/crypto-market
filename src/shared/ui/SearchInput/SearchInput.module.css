@@ -20,3 +20,13 @@
   justify-content: center;
   width: 100%;
 }
+
+.searchInputExample {
+  min-width: 400px;
+  padding: 12px;
+  margin: 12px;
+  border: 1px solid #ccc;
+  background-color: #ecdfff;
+  border-radius: 18px;
+  font-size: 20px;
+}

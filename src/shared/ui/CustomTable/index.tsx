@@ -25,7 +25,7 @@ export const CustomTable = ({
   });
 
   if (tableData.length === 0 && !isLoading) {
-    return <div className={s.emptyField}>Данные отсутствуют</div>;
+    return <div className={s.emptyField}>No data available</div>;
   }
 
   return (

@@ -14,7 +14,6 @@
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "@types/react-router-dom": "^5.3.3",
-    "autoprefixer": "^10.4.20",
     "chart.js": "^4.4.4",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
@@ -29,7 +28,9 @@
     "start": "cross-env ESLINT_NO_DEV_ERRORS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "cross-env ESLINT_NO_DEV_ERRORS=true storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +51,18 @@
     ]
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.9.0",
     "@playwright/test": "^1.47.2",
+    "@storybook/addon-essentials": "^8.3.4",
+    "@storybook/addon-interactions": "^8.3.4",
+    "@storybook/addon-links": "^8.3.4",
+    "@storybook/addon-onboarding": "^8.3.4",
+    "@storybook/blocks": "^8.3.4",
+    "@storybook/preset-create-react-app": "^8.3.4",
+    "@storybook/react": "^8.3.4",
+    "@storybook/react-webpack5": "^8.3.4",
+    "@storybook/test": "^8.3.4",
+    "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -60,10 +72,14 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-storybook": "^0.9.0",
     "postcss": "^8.4.47",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.13"
+    "prop-types": "^15.8.1",
+    "storybook": "^8.3.4",
+    "tailwindcss": "^3.4.13",
+    "webpack": "^5.95.0"
   }
 }

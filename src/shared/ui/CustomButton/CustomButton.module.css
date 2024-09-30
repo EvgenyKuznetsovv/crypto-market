@@ -2,6 +2,7 @@
   background-color: #c6bed6;
   padding: 7px 20px;
   border-radius: 10px;
+  border: 0px solid #c6bed6;
 }
 
 .button:hover {
@@ -9,5 +10,24 @@
 }
 
 .button:active {
-    background-color: #bcb7c6;
+  background-color: #bcb7c6;
 }
+
+.exampleButton {
+  background-color: rgb(7, 84, 173);
+  padding: 7px 20px;
+  border-radius: 20px;
+  border: 2px solid #c7b3ee;
+  width: 200px;
+  font-size: 18px;
+  color: white;
+}
+
+.exampleButton:hover {
+  background-color: rgb(28, 92, 165);
+}
+
+.exampleButton:active {
+  background-color: rgb(28, 101, 185);
+}
+
