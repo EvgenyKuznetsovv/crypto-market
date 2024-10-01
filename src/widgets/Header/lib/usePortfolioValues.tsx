@@ -11,10 +11,11 @@ export const usePortfolioValues = () => {
   const portfolio = getPortfolio();
   const portfolioAssestsIds = getPortfolioAssestsIds(portfolio);
 
-  const { data: { data: portfolioAssests = [] } = {}, isLoading } = useGetAssetsQuery(
-    { ids: portfolioAssestsIds },
-    { pollingInterval: 3000 }
-  );
+  const {
+    data: { data: portfolioAssests = [] } = {},
+    isLoading,
+    refetch: refetchPortfolioAssets,
+  } = useGetAssetsQuery({ ids: portfolioAssestsIds }, { pollingInterval: 30000 });
 
   const currentTotalPrice = calcCurrentTotalPrice(portfolio, portfolioAssests);
   const totalPortfolioPrice = calcTotalPortfolioPrice(portfolio);
@@ -25,7 +26,7 @@ export const usePortfolioValues = () => {
 
   if (totalPortfolioPrice) {
     percentageChange = ((difference / totalPortfolioPrice) * 100).toFixed(2);
-  } 
+  }
 
   const formattedCurrentTotalPrice = formatPrice(currentTotalPrice.toString());
   const formattedDifference = formatPrice(difference.toString());
@@ -39,5 +40,6 @@ export const usePortfolioValues = () => {
     sign,
     isLoading,
     portfolioAssests,
+    refetchPortfolioAssets,
   };
 };

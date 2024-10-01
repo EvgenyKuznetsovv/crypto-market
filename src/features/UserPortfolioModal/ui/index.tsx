@@ -15,6 +15,7 @@ export const UserPortfolioModal = ({
   apiData,
   onClose,
   opened,
+  refetchPortfolioAssets,
 }: UserPortfolioModalProps) => {
   const [portfolio, setPortfolio] = useState<[string, CoinPurchase[]][]>([]);
 
@@ -28,6 +29,7 @@ export const UserPortfolioModal = ({
     delete oldPortfolio[id];
     localStorage.setItem("portfolio", JSON.stringify(oldPortfolio));
     setPortfolio(Object.entries(getPortfolio()));
+    refetchPortfolioAssets();
   };
 
   return (

@@ -11,6 +11,7 @@ import {
 export const coinCapApi = createApi({
   reducerPath: "coinCapApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coincap.io/v2/" }),
+  tagTypes: ["Assets"],
   endpoints: (builder) => ({
     getAssets: builder.query<Assets, GetAssetsParams>({
       query: ({ limit, offset, search, ids }) => {
@@ -34,6 +35,7 @@ export const coinCapApi = createApi({
           params,
         };
       },
+      providesTags: (result) => (result ? [{ type: "Assets" }] : [])
     }),
 
     getAssetById: builder.query<Asset, string>({

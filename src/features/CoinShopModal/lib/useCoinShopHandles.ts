@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import { useDispatch } from "react-redux";
+
+import { coinCapApi } from "../../../shared/api";
 import { AssetData } from "../../../shared/api/types";
 
 export const useCoinShopHandles = ({
@@ -11,6 +14,7 @@ export const useCoinShopHandles = ({
 }) => {
   const [amount, setAmount] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);
@@ -42,6 +46,7 @@ export const useCoinShopHandles = ({
         portfolio[coinId].push({ num: numValue, price: asset?.priceUsd });
 
         localStorage.setItem("portfolio", JSON.stringify(portfolio));
+        dispatch(coinCapApi.util.invalidateTags(["Assets"]));
       }
       setAmount("");
       onClose();

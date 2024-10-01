@@ -22,7 +22,7 @@ export const useCoinsTableData = ({
     data: { data: assets = [] } = {},
     error,
     isLoading,
-  } = useGetAssetsQuery({ search: searchCoinName, offset }, { pollingInterval: 10000 });
+  } = useGetAssetsQuery({ search: searchCoinName, offset }, { pollingInterval: 30000 });
 
   const [sort, setSort] = useState<SortType<AssetData>>({
     type: null,

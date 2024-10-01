@@ -14,7 +14,7 @@ export const Header = () => {
 
   const { data: { data: assets = [] } = {} } = useGetAssetsQuery(
     { ids },
-    { pollingInterval: 10000 }
+    { pollingInterval: 30000 }
   );
 
   const {
@@ -24,6 +24,7 @@ export const Header = () => {
     sign,
     isLoading,
     portfolioAssests,
+    refetchPortfolioAssets,
   } = usePortfolioValues();
 
   return (
@@ -53,7 +54,12 @@ export const Header = () => {
           </div>
         </button>
       )}
-      <UserPortfolioModal apiData={portfolioAssests} onClose={close} opened={opened} />
+      <UserPortfolioModal
+        apiData={portfolioAssests}
+        onClose={close}
+        opened={opened}
+        refetchPortfolioAssets={refetchPortfolioAssets}
+      />
     </div>
   );
 };

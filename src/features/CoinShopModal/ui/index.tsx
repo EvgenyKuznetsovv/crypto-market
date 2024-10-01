@@ -13,7 +13,7 @@ export const CoinShopModal = ({ coinId, onClose, opened }: CoinShopModalProps) =
     data: { data: asset } = {},
     isLoading,
     isFetching,
-  } = useGetAssetByIdQuery(coinId, { skip: !opened });
+  } = useGetAssetByIdQuery(coinId, { skip: !opened, pollingInterval: 30000 });
 
   const { amount, error, handleChange, handleSubmit } = useCoinShopHandles({
     asset,
