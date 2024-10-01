@@ -6,9 +6,9 @@ import { CoinTableRow, Sortable } from "../../../features";
 import { SortType } from "../../../features/Sortable/types";
 import { useGetAssetsQuery } from "../../../shared/api";
 import { AssetData } from "../../../shared/api/types";
-import { formatPrice, sortDataArray } from "../../../shared/lib";
+import { arrayToChunks, formatPrice, sortDataArray } from "../../../shared/lib";
 
-import { coinsTableTitles } from "./constants";
+import { coinsTableTitles, numOfchunks } from "./constants";
 
 export const useCoinsTableData = ({
   searchCoinName,
@@ -17,19 +17,27 @@ export const useCoinsTableData = ({
   searchCoinName: string;
   activePage: number;
 }) => {
-  const offset = (activePage - 1) * 100;
+  const getOffset = (page: number, numberOfChunks: number) => {
+    return (Math.ceil(page / numberOfChunks) - 1) * 100;
+  };
+  const offset = getOffset(activePage, numOfchunks);
+
   const {
     data: { data: assets = [] } = {},
     error,
     isLoading,
   } = useGetAssetsQuery({ search: searchCoinName, offset }, { pollingInterval: 30000 });
 
+  const chunkAssets = arrayToChunks<AssetData>(assets, 100 / numOfchunks)[
+    (activePage - 1) % numOfchunks
+  ];
+
   const [sort, setSort] = useState<SortType<AssetData>>({
     type: null,
     order: null,
   });
 
-  const sortedAssets = sortDataArray<AssetData>(assets, sort);
+  const sortedAssets = sortDataArray<AssetData>(chunkAssets, sort);
 
   const tableData = (sortedAssets ?? []).map(
     ({ id, changePercent24Hr, marketCapUsd, priceUsd, symbol }) => {

@@ -5,7 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 
 import { CoinShopModal } from "../../../features";
 import { CustomTable, Loader, SearchInput } from "../../../shared/ui";
-import { coinsTableClickHandler, useCoinsTableData } from "../lib";
+import { coinsTableClickHandler, numOfchunks, useCoinsTableData } from "../lib";
 
 import s from "./CoinsTable.module.css";
 
@@ -32,7 +32,7 @@ export const CoinsTable = () => {
     });
   };
 
-  const isPaginationVisible = !(tableData.length < 100);
+  const isPaginationVisible = !(tableData.length < 100 / numOfchunks);
 
   return (
     <div>
@@ -62,7 +62,7 @@ export const CoinsTable = () => {
               <Pagination
                 id={"pagination"}
                 onChange={handlePageChange}
-                total={7}
+                total={7 * numOfchunks}
                 value={activePage}
                 withControls={false}
               />

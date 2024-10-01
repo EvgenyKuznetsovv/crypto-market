@@ -11,3 +11,6 @@ export const coinsTableTitles: {
   { title: "Market cap", property: "marketCapUsd", isSortable: true },
   { title: "Action" },
 ];
+
+// should be 100 % numOfchunks = 0
+export const numOfchunks = 4;
